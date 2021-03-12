@@ -1278,10 +1278,10 @@ public class Blocks implements ContentList{
             warmupSpeed = 0.01f;
 
             //more than the laser drill
-            liquidBoostIntensity = 1.8f;
+            liquidBoostIntensity = 2.4f;
 
             consumes.power(3f);
-            consumes.liquid(Liquids.water, 0.1f).boost();
+            consumes.liquid(Liquids.cryofluid, 0.1f).boost();
         }};
 
         waterExtractor = new SolidPump("water-extractor"){{
