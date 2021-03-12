@@ -1266,7 +1266,7 @@ public class Blocks implements ContentList{
 
         blastDrill = new Drill("blast-drill"){{
             requirements(Category.production, with(Items.copper, 65, Items.silicon, 60, Items.titanium, 50, Items.thorium, 75));
-            drillTime = 280;
+            drillTime = 240;
             size = 4;
             drawRim = true;
             hasPower = true;
@@ -1280,7 +1280,7 @@ public class Blocks implements ContentList{
             //more than the laser drill
             liquidBoostIntensity = 2.4f;
 
-            consumes.power(3f);
+            consumes.power(3.5f);
             consumes.liquid(Liquids.cryofluid, 0.1f).boost();
         }};
 
