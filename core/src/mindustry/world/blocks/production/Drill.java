@@ -65,6 +65,7 @@ public class Drill extends Block{
         solid = true;
         group = BlockGroup.drills;
         hasLiquids = true;
+        consumes.add(new ConsumeLiquidFilter(liquid -> liquid.temperature <= 0.5f && liquid.flammability < 0.1f, coolantUsage)).update(false).boost();
         liquidCapacity = 5f;
         hasItems = true;
         ambientSound = Sounds.drill;
