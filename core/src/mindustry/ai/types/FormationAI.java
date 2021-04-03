@@ -33,7 +33,7 @@ public class FormationAI extends AIController implements FormationMember{
         }
 
         if(unit.type.canBoost){
-            unit.elevation = Mathf.approachDelta(unit.elevation, unit.onSolid() ? 1f : leader.type.canBoost ? leader.elevation : 0f, 0.08f);
+            unit.elevation = Mathf.approachDelta(unit.elevation, unit.onSolid() ? 1f : leader.type.canBoost ? leader.elevation : 0f, unit.type.riseSpeed);
         }
 
         unit.controlWeapons(true, leader.isShooting);
@@ -46,9 +46,9 @@ public class FormationAI extends AIController implements FormationMember{
             unit.lookAt(unit.vel.angle());
         }
 
-        Vec2 realtarget = vec.set(target).add(leader.vel.x, leader.vel.y);
+        Vec2 realtarget = vec.set(target).add(leader.vel);
 
-        float speed = unit.realSpeed() * unit.floorSpeedMultiplier() * Time.delta;
+        float speed = unit.realSpeed() * Time.delta;
         unit.approach(Mathf.arrive(unit.x, unit.y, realtarget.x, realtarget.y, unit.vel, speed, 0f, speed, 1f).scl(1f / Time.delta));
 
         if(unit.canMine() && leader.canMine()){

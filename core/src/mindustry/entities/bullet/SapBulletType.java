@@ -19,7 +19,7 @@ public class SapBulletType extends BulletType{
     public SapBulletType(){
         speed = 0.0001f;
         despawnEffect = Fx.none;
-        pierce = false;
+        pierce = true;
         collides = false;
         hitSize = 0f;
         hittable = false;
@@ -50,7 +50,7 @@ public class SapBulletType extends BulletType{
 
     @Override
     public float range(){
-        return length;
+        return Math.max(length, maxRange);
     }
 
     @Override

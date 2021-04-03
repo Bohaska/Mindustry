@@ -81,13 +81,6 @@ public class Logic implements ApplicationListener{
                     state.wavetime = state.rules.waveSpacing;
 
                     SectorDamage.applyCalculatedDamage();
-
-                    //make sure damaged buildings are counted
-                    for(Tile tile : world.tiles){
-                        if(tile.build != null && tile.build.damaged()){
-                            indexer.notifyTileDamaged(tile.build);
-                        }
-                    }
                 }
 
                 //reset values
@@ -207,7 +200,7 @@ public class Logic implements ApplicationListener{
     }
 
     public void skipWave(){
-        state.wavetime = 0;
+        runWave();
     }
 
     public void runWave(){
@@ -375,7 +368,7 @@ public class Logic implements ApplicationListener{
 
         if(state.isGame()){
             if(!net.client()){
-                state.enemies = Groups.unit.count(u -> u.team() == state.rules.waveTeam && u.type.isCounted);
+                state.enemies = Groups.unit.count(u -> u.team() == state.rules.waveTeam && u.isCounted());
             }
 
             if(!state.isPaused()){

@@ -33,6 +33,8 @@ public class ShrapnelBulletType extends BulletType{
 
     @Override
     public void init(Bullet b){
+        super.init(b);
+
         Damage.collideLaser(b, length, hitLarge);
     }
 
@@ -45,7 +47,7 @@ public class ShrapnelBulletType extends BulletType{
 
     @Override
     public float range(){
-        return length;
+        return Math.max(length, maxRange);
     }
 
     @Override

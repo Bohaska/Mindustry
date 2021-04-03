@@ -23,7 +23,8 @@ public class LaserBulletType extends BulletType{
     public LaserBulletType(float damage){
         super(0.01f, damage);
 
-        hitEffect = Fx.hitLancer;
+        hitEffect = Fx.hitLaserBlast;
+        hitColor = colors[2];
         despawnEffect = Fx.none;
         shootEffect = Fx.hitLancer;
         smokeEffect = Fx.none;
@@ -55,7 +56,7 @@ public class LaserBulletType extends BulletType{
 
     @Override
     public float range(){
-        return length;
+        return Math.max(length, maxRange);
     }
 
     @Override

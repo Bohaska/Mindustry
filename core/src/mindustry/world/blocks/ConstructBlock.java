@@ -22,6 +22,8 @@ import mindustry.world.*;
 import mindustry.world.blocks.storage.CoreBlock.*;
 import mindustry.world.modules.*;
 
+import java.util.*;
+
 import static mindustry.Vars.*;
 
 /** A block in the process of construction. */
@@ -63,7 +65,7 @@ public class ConstructBlock extends Block{
         if(tile == null) return;
 
         float healthf = tile.build == null ? 1f : tile.build.healthf();
-        Seq<Building> prev = tile.build instanceof ConstructBuild ? ((ConstructBuild)tile.build).prevBuild : null;
+        Seq<Building> prev = tile.build instanceof ConstructBuild co ? co.prevBuild : null;
 
         tile.setBlock(block, team, rotation);
 
@@ -172,7 +174,7 @@ public class ConstructBlock extends Block{
 
         @Override
         public Cursor getCursor(){
-            return SystemCursor.hand;
+            return interactable(player.team()) ? SystemCursor.hand : SystemCursor.arrow;
         }
 
         @Override
@@ -263,6 +265,11 @@ public class ConstructBlock extends Block{
         }
 
         public void deconstruct(Unit builder, @Nullable Building core, float amount){
+            //reset accumulated resources when switching modes
+            if(wasConstructing){
+                Arrays.fill(accumulator, 0);
+                Arrays.fill(totalAccumulator, 0);
+            }
             wasConstructing = false;
             activeDeconstruct = true;
             float deconstructMultiplier = state.rules.deconstructRefundMultiplier;

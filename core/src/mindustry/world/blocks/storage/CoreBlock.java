@@ -34,8 +34,6 @@ public class CoreBlock extends StorageBlock{
 
     public final int timerResupply = timers++;
 
-    public int launchRange = 1;
-
     public int ammoAmount = 5;
     public float resupplyRate = 10f;
     public float resupplyRange = 60f;
@@ -52,7 +50,9 @@ public class CoreBlock extends StorageBlock{
         unitCapModifier = 10;
         loopSound = Sounds.respawning;
         loopSoundVolume = 1f;
-        group = BlockGroup.none;
+        drawDisabled = false;
+        canOverdrive = false;
+        replaceable = false;
     }
 
     @Remote(called = Loc.server)
@@ -113,7 +113,7 @@ public class CoreBlock extends StorageBlock{
         if(tile == null) return false;
         CoreBuild core = team.core();
         //must have all requirements
-        if(core == null || (!state.rules.infiniteResources && !core.items.has(requirements))) return false;
+        if(core == null || (!state.rules.infiniteResources && !core.items.has(requirements, state.rules.buildCostMultiplier))) return false;
         return tile.block() instanceof CoreBlock && size > tile.block().size;
     }
 
@@ -385,6 +385,7 @@ public class CoreBlock extends StorageBlock{
             }else if(state.rules.coreIncinerates && items.get(item) >= storageCapacity && !noEffect){
                 //create item incineration effect at random intervals
                 incinerateEffect(this, source);
+                noEffect = false;
             }
         }
     }
