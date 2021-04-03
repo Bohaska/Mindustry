@@ -34,7 +34,7 @@ public class Blocks implements ContentList{
     public static Block
 
     //environment
-    air, spawn, cliff, deepwater, water, taintedWater, tar, slag, stone, craters, charr, sand, darksand, dirt, mud, ice, snow, darksandTaintedWater, space,
+    air, spawn, cliff, deepwater, water, taintedWater, tar, slag, stone, craters, charr, sand, darksand, dirt, mud, ice, snow, wood, darksandTaintedWater, space,
     dacite, stoneWall, dirtWall, sporeWall, iceWall, daciteWall, sporePine, snowPine, pine, shrubs, whiteTree, whiteTreeDead, sporeCluster,
     iceSnow, sandWater, darksandWater, duneWall, sandWall, moss, sporeMoss, shale, shaleWall, shaleBoulder, sandBoulder, daciteBoulder, boulder, snowBoulder, basaltBoulder, grass, salt,
     metalFloor, metalFloorDamaged, metalFloor2, metalFloor3, metalFloor5, basalt, magmarock, hotrock, snowWall, saltWall,
@@ -302,7 +302,7 @@ public class Blocks implements ContentList{
         }};
         
         wood = new Floor("wood"){{
-            variants = 5;
+            variants = 1;
         }};
 
         stoneWall = new StaticWall("stone-wall"){{
