@@ -300,6 +300,10 @@ public class Blocks implements ContentList{
             variants = 3;
             attributes.set(Attribute.oil, 1f);
         }};
+        
+        wood = new Floor("wood"){{
+            variants = 5;
+        }};
 
         stoneWall = new StaticWall("stone-wall"){{
             variants = 2;
